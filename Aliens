@@ -1,0 +1,337 @@
+var drawBitmoji1 = function(x, y, h, shirtColor)
+{
+    var Bitmoji1 = function(bitmojiConfig)
+    {
+        this.bitmojiConfig = bitmojiConfig;
+    };
+
+    Bitmoji1.prototype.drawHead = function()
+    {
+        var ratio = this.bitmojiConfig.bitH / 155;
+        //neck
+        noStroke();
+        fill(255, 228, 199); //skin tone
+        bezier(this.bitmojiConfig.bitX + 50 * ratio, this.bitmojiConfig.bitY + 98 * ratio, this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY - 5 * ratio, this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY - 5 * ratio, this.bitmojiConfig.bitX + 100 * ratio, this.bitmojiConfig.bitY + 98 * ratio); //neck
+        //head
+        noStroke();
+        fill(255, 228, 199); //skin tone
+        ellipse(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 40 * ratio, 65 * ratio, 80 * ratio); //head shape
+        //head shaper
+            fill(3, 3, 3); //black
+            noStroke();
+            arc(this.bitmojiConfig.bitX + 50 * ratio, this.bitmojiConfig.bitY + 40 * ratio, 15* ratio, 50 * ratio, 90, 270); //left shaper
+            arc(this.bitmojiConfig.bitX + 100 * ratio, this.bitmojiConfig.bitY + 40 * ratio, 15 * ratio, 50* ratio, -90, 90); //right shaper
+    };
+    
+    Bitmoji1.prototype.drawHair = function()
+    {
+        var ratio = this.bitmojiConfig.bitH / 155;
+        //hair
+        noStroke();
+        fill(84, 56, 14); //hair color
+        arc(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 67 * ratio, 50 * ratio, 25 * ratio, -20, 200); //beard
+        arc(this.bitmojiConfig.bitX + 98 * ratio, this.bitmojiConfig.bitY + 48 * ratio, 10 * ratio, 43 * ratio, -58, 137); //beard right
+        arc(this.bitmojiConfig.bitX + 52 * ratio, this.bitmojiConfig.bitY + 48 * ratio, 10 * ratio, -43 * ratio, 122, 317); //left beard
+        arc(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 54 * ratio, 50 * ratio, -15 * ratio, -20, 200); //mustache
+        arc(this.bitmojiConfig.bitX + 50 * ratio, this.bitmojiConfig.bitY + 24 * ratio, 5 * ratio, 13 * ratio, 90, 270); //left sideburn
+        arc(this.bitmojiConfig.bitX + 100 * ratio, this.bitmojiConfig.bitY + 24 * ratio, 5 * ratio, 13 * ratio, -90, 90); //right sideburn
+    };
+
+    Bitmoji1.prototype.drawGlasses = function()
+    {
+        var ratio = this.bitmojiConfig.bitH / 155;
+        //glasses
+        stroke(0, 0, 0); 
+        strokeWeight(2); //line thickness
+        fill(255, 255, 255); //white
+        quad(this.bitmojiConfig.bitX + 48 * ratio, this.bitmojiConfig.bitY + 28 * ratio, this.bitmojiConfig.bitX + 51 * ratio, this.bitmojiConfig.bitY + 38 * ratio, this.bitmojiConfig.bitX + 67 * ratio, this.bitmojiConfig.bitY + 38 * ratio, this.bitmojiConfig.bitX + 71 * ratio, this.bitmojiConfig.bitY + 28 * ratio); //left lens
+        quad(this.bitmojiConfig.bitX + 102 * ratio, this.bitmojiConfig.bitY + 28 * ratio, this.bitmojiConfig.bitX + 99 * ratio, this.bitmojiConfig.bitY + 38 * ratio, this.bitmojiConfig.bitX + 83 * ratio, this.bitmojiConfig.bitY + 38 * ratio, this.bitmojiConfig.bitX + 79 * ratio, this.bitmojiConfig.bitY + 28 * ratio); //right lens
+        fill(255, 228, 199); //skin tone
+        arc(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 28 * ratio, 9 * ratio, 1 * ratio, 185, 360); //glasses bridge
+        line(this.bitmojiConfig.bitX + 100 * ratio, this.bitmojiConfig.bitY + 28 * ratio, this.bitmojiConfig.bitX + 103 * ratio, this.bitmojiConfig.bitY + 28 * ratio); //right framearm
+        line(this.bitmojiConfig.bitX + 47 * ratio, this.bitmojiConfig.bitY + 28 * ratio, this.bitmojiConfig.bitX + 50 * ratio, this.bitmojiConfig.bitY + 28 * ratio); //left framearm
+    };
+
+    Bitmoji1.prototype.drawFace = function()
+    {
+        var ratio = this.bitmojiConfig.bitH / 155;
+        //nose
+        stroke(0, 0, 0);
+        fill(255, 228, 199); //skin tone
+        strokeWeight(1);
+        bezier(this.bitmojiConfig.bitX + 72 * ratio, this.bitmojiConfig.bitY + 35 * ratio, this.bitmojiConfig.bitX + 65 * ratio, this.bitmojiConfig.bitY + 50 * ratio, this.bitmojiConfig.bitX + 85 * ratio, this.bitmojiConfig.bitY + 50 * ratio, this.bitmojiConfig.bitX + 78 * ratio, this.bitmojiConfig.bitY + 35 * ratio); //nose
+        arc(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 65 * ratio, 13 * ratio, -3 * ratio, 0, 180); //chin
+        //mouth
+        fill(255, 255, 255); //teeth color
+        arc(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 57 * ratio, 20 * ratio, 8 * ratio, 0, 180); //lower mouth
+        arc(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 57 * ratio, 20 * ratio, -3 * ratio, 0, 180); //upper mouth
+    };
+
+    Bitmoji1.prototype.drawEyes = function()
+    {
+        var ratio = this.bitmojiConfig.bitH / 155;
+        //eyes
+        stroke(0, 0, 0);
+        strokeWeight(1);
+        fill(84, 56, 14); //hair color
+        ellipse(this.bitmojiConfig.bitX + 60 * ratio, this.bitmojiConfig.bitY + 33 * ratio, 5 * ratio, 5 * ratio); //left eye
+        ellipse(this.bitmojiConfig.bitX + 90 * ratio, this.bitmojiConfig.bitY + 33 * ratio, 5 * ratio, 5 * ratio); //right eye
+    };
+
+    Bitmoji1.prototype.drawClothes = function() 
+    {
+        var ratio = this.bitmojiConfig.bitH / 155;
+        //hat
+        noStroke();
+        fill(235, 235, 211); //beige
+        arc(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 20 * ratio, 55 * ratio, -40 * ratio, 0, 180); //hat body
+        stroke(86, 83, 64);
+        fill(86, 83, 64); //darker beige
+        arc(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 19 * ratio, 50 * ratio, -15 * ratio, 0, 180); //hat brim
+        //body
+        noStroke();
+        if (this.bitmojiConfig.shirtColor) 
+        {
+            if (this.bitmojiConfig.row === 0) 
+            {
+                fill(255, 0, 0);
+            } else if (this.bitmojiConfig.row === 1 || this.bitmojiConfig.row === 2) 
+            {
+                fill(0, 146,  250);
+            } else if (this.bitmojiConfig.row === 3 || this.bitmojiConfig.row === 4) 
+            {
+                fill(0, 255, 0);
+            }
+        }
+        fill(this.bitmojiConfig.shirtColor);//shirt color
+        ellipse(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 105 * ratio, 140 * ratio, 36 * ratio);//shoulders
+        fill(255, 228, 199); //skin tone
+        arc(this.bitmojiConfig.bitX + 75 * ratio, this.bitmojiConfig.bitY + 85 * ratio, 80 * ratio, 15 * ratio, 30, 150); //neckline
+        fill(this.bitmojiConfig.shirtColor);//shirt color
+        noStroke();
+        quad(this.bitmojiConfig.bitX + 105 * ratio, this.bitmojiConfig.bitY + 103 * ratio, this.bitmojiConfig.bitX + 145 * ratio, this.bitmojiConfig.bitY + 103 * ratio, this.bitmojiConfig.bitX + 150 * ratio, this.bitmojiConfig.bitY + 150 * ratio, this.bitmojiConfig.bitX + 110 * ratio, this.bitmojiConfig.bitY + 150 * ratio);//right arm
+        quad(this.bitmojiConfig.bitX + 5 * ratio, this.bitmojiConfig.bitY + 103 * ratio, this.bitmojiConfig.bitX + 52 * ratio, this.bitmojiConfig.bitY + 103 * ratio, this.bitmojiConfig.bitX + 35 * ratio, this.bitmojiConfig.bitY + 150 * ratio, this.bitmojiConfig.bitX + 0 * ratio, this.bitmojiConfig.bitY + 150 * ratio);//left arm
+        strokeWeight(0.5);
+        rect(this.bitmojiConfig.bitX + 35 * ratio, this.bitmojiConfig.bitY + 118 * ratio, 80 * ratio, 32 * ratio);//torso
+        stroke(1);
+        line(this.bitmojiConfig.bitX + 35 * ratio, this.bitmojiConfig.bitY + 120 * ratio, this.bitmojiConfig.bitX + 30 * ratio, this.bitmojiConfig.bitY + 150 * ratio);
+        line(this.bitmojiConfig.bitX + 115 * ratio, this.bitmojiConfig.bitY + 120 * ratio, this.bitmojiConfig.bitX + 120 * ratio, this.bitmojiConfig.bitY + 150 * ratio);
+    };
+
+    Bitmoji1.prototype.drawInitials = function()
+    {
+        if (this.bitmojiConfig.initials) //turning initials into a variable that can be toggled
+        {
+            var ratio = this.bitmojiConfig.bitH / 155;
+            //initials
+            stroke(1);
+            line(this.bitmojiConfig.bitX + 55 * ratio, this.bitmojiConfig.bitY + 125 * ratio, this.bitmojiConfig.bitX + 50 * ratio, this.bitmojiConfig.bitY + 140 * ratio); // /
+            line(this.bitmojiConfig.bitX + 55 * ratio, this.bitmojiConfig.bitY + 125 * ratio, this.bitmojiConfig.bitX + 60 * ratio, this.bitmojiConfig.bitY + 140 * ratio); // \
+            line(this.bitmojiConfig.bitX + 65 * ratio, this.bitmojiConfig.bitY + 125 * ratio, this.bitmojiConfig.bitX + 60 * ratio, this.bitmojiConfig.bitY + 140 * ratio); // /
+            line(this.bitmojiConfig.bitX + 65 * ratio, this.bitmojiConfig.bitY + 125 * ratio, this.bitmojiConfig.bitX + 70 * ratio, this.bitmojiConfig.bitY + 140 * ratio); // \
+            arc(this.bitmojiConfig.bitX + 88 * ratio, this.bitmojiConfig.bitY + 133 * ratio, 15 * ratio, 15 * ratio, 60, 300);// C
+        }
+    };
+    
+    var Bitmoji1 = new Bitmoji1({
+    bitX: x,
+    bitY: y,
+    bitH: h,
+    initials: true,
+    shirtColor: shirtColor,
+    }); 
+    
+    Bitmoji1.drawHead();
+    Bitmoji1.drawHair();
+    Bitmoji1.drawGlasses();
+    Bitmoji1.drawFace();
+    Bitmoji1.drawEyes();
+    Bitmoji1.drawClothes();
+    Bitmoji1.drawInitials();
+};
+
+var AlienProjectile = function(x, y)
+{
+    this.x = x;
+    this.y = y;
+    this.size = 5;
+    this.speed = 5;
+    this.active = true;
+};
+
+AlienProjectile.prototype.update = function()
+{
+    this.y += this.speed;
+    if (this.y > height)
+    {
+        this.active = false;
+    }
+};
+
+AlienProjectile.prototype.display = function()
+{
+    fill(255, 255, 255);
+    ellipse(this.x, this.y, this.size, this.size);
+};
+
+var aliens = [];
+var alienProjectiles = [];
+
+var Alien = function(x, y, bitmojiConfig) 
+{
+    this.x = x;
+    this.y = y;
+    this.size = 30;
+    this.speed = 0.01;
+    this.direction = 1;
+    this.drop = 1;
+    this.bitmojiConfig = bitmojiConfig; //Store bitmoji1's configuration
+};
+
+Alien.prototype.move = function() 
+{
+    // Move all aliens horizontally
+    for (var i = 0; i < aliens.length; i++) 
+    {
+        aliens[i].x += aliens[i].speed * aliens[i].direction;
+    }
+    // Check if alien had reached bottom of screen
+    for (var j = 0; j < aliens.length; j++)
+    { 
+        if (aliens[j].y >= height - 50)
+        {
+            // Stop aliens for moving further
+            aliens[j].speed = 0;
+            aliens[j].y = height - 50;
+            // Flag indicating aliens has won
+            aliens[j].reachedBottom = true;
+        }
+    }
+};
+
+Alien.prototype.checkEdge = function() 
+{
+    var rightmostAlienX = -Infinity;
+    var leftmostAlienX = Infinity;
+    
+    // Find the rightmost and leftmost aliens
+    for (var i = 0; i < aliens.length; i++) 
+    {
+        if (aliens[i].x > rightmostAlienX) 
+        {
+            rightmostAlienX = aliens[i].x;
+        }
+        if (aliens[i].x < leftmostAlienX) 
+        {
+            leftmostAlienX = aliens[i].x;
+        }
+    }
+    
+    // If any alien is at the edge of the screen horizontally, reverse their direction and move them down slightly
+    if (rightmostAlienX >= width - 25 || leftmostAlienX <= 0) 
+    {
+        for (var j = 0; j < aliens.length; j++) 
+        {
+            aliens[j].direction *= -1; // Reverse direction
+            aliens[j].y += 10; // Drop down slightly
+            aliens[j].speed += 0.001; // Slightly increase speed
+        }
+    }
+};
+
+Alien.prototype.display = function() 
+{
+    //draw bitmoji1 based on stored configuration
+    drawBitmoji1(this.x, this.y, this.size, this.bitmojiConfig.shirtColor);
+};
+
+var maxProjectiles = 2; // Max number of projectiles active
+
+Alien.prototype.shoot = function()
+{
+    var numActiveProjectiles = 0;
+    for (var i = 0; i < alienProjectiles.length; i++)
+    {
+        if (alienProjectiles[i].active)
+        {
+            numActiveProjectiles++;
+        }
+    }
+    
+    if (numActiveProjectiles < maxProjectiles && random(1) < 0.005)
+    {
+        return new AlienProjectile(this.x, this.y);
+    }
+    return null;
+};
+
+var numRows = 5;
+var numCol = 10;
+
+var drawAlien = function(x, y, bitmojiConfig, row) 
+{
+    bitmojiConfig = bitmojiConfig || {};
+    if (row === 0)
+    {
+        bitmojiConfig.shirtColor = color(255, 0, 0);
+    } else if (row === 1 || row === 2)
+    {
+        bitmojiConfig.shirtColor  = color(0, 146, 250);
+    } else if (row === 3 || row === 4)
+    {
+        bitmojiConfig.shirtColor = color(0, 255, 0);
+    } 
+    bitmojiConfig.row = row; //Set the row property
+    var alien = new Alien(x, y, bitmojiConfig);
+    aliens.push(alien);
+};
+
+var updateAliens = function() {
+    for (var i = 0; i < aliens.length; i++) {
+        aliens[i].move();
+        aliens[i].display();
+
+        // Alien shoots
+        var alienProjectileInstance = aliens[i].shoot();
+        if (alienProjectileInstance) {
+            alienProjectiles.push(alienProjectileInstance);
+        }
+    }
+
+    // Update alienProjectiles
+    for (var j = alienProjectiles.length - 1; j >= 0; j--) {
+        var alienProjectileInstance = alienProjectiles[j];
+        alienProjectileInstance.update();
+        alienProjectileInstance.display();
+
+        // Remove alienProjectile if it's not active (off-screen)
+        if (!alienProjectileInstance.active) {
+            alienProjectiles.splice(j, 1);
+        }
+    }
+
+    aliens[0].checkEdge(); // Check edge only once when the rightmost alien reaches the edge
+};
+
+var spacingX = 30;
+var spacingY = 30;
+
+var createAlienGrid = function() {
+    var BitmojiConfigs = [];
+
+    for (var row = 0; row < numRows; row++) {
+        for (var col = 0; col < numCol; col++) {
+            var x = col * spacingX + 25;
+            var y = row * spacingY + 5;
+            drawAlien(x, y, BitmojiConfigs[row], row); // Pass the row parameter
+        }
+    }
+};
+
+createAlienGrid();
+
+draw = function() 
+{
+    background(0, 0, 0);
+    updateAliens();
+};
